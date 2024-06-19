@@ -1,6 +1,5 @@
 /* dashboard.css */
 
-/* Dashboard layout */
 .dashboard {
     display: flex;
     flex-direction: column;
@@ -42,13 +41,44 @@
 
 .container {
     flex: 1;
-    padding: 0 20px;
+    padding: 20px;
     background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-/* Specific styles for line chart */
+/* Styles for cards */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.card h4 {
+    margin-top: 0;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.card li {
+    margin-bottom: 10px;
+}
+
+/* Styles for line chart */
 .line-chart {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -66,7 +96,6 @@
 #temperature, #humidity, #lembab {
     margin-bottom: 20px;
 }
-
 
 button {
     display: block;

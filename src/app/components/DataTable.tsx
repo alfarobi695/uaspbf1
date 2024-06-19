@@ -104,7 +104,7 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
             <table style={{ width: '100%' }}>
                 <thead>
                     <tr>
-                        <th onClick={() => requestSort('id')}>ID {getSortArrow('id')}</th>
+                        <th>ID</th>
                         <th onClick={() => requestSort('temperature')}>Temperature {getSortArrow('temperature')}</th>
                         <th onClick={() => requestSort('humidity')}>Humidity {getSortArrow('humidity')}</th>
                         <th onClick={() => requestSort('lembab')}>Lembab {getSortArrow('lembab')}</th>
@@ -113,9 +113,9 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {currentItems.map((item) => (
+                    {currentItems.map((item, index) => (
                         <tr key={item.id}>
-                            <td data-label="ID">{item.id}</td>
+                            <td data-label="ID">{index + 1 + indexOfFirstItem}</td>
                             <td data-label="Temperature">{item.temperature}</td>
                             <td data-label="Humidity">{item.humidity}</td>
                             <td data-label="Lembab">{item.lembab}</td>

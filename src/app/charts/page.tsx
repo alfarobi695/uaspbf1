@@ -98,7 +98,8 @@ const Charts: React.FC = () => {
     <div className="dashboard">
       <div className="header">
         <nav>
-          <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }}>Tampil Data</a>
+          <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }}>Dashboard</a>
+          <a href="/tables" onClick={(e) => { e.preventDefault(); router.push('/'); }}>Tampil Data</a>
           <a href="/charts" onClick={(e) => { e.preventDefault(); router.push('/charts'); }}>Tampil Chart</a>
         </nav>
       </div>
