@@ -109,11 +109,11 @@ const Home: React.FC = () => {
                 </nav>
             </header>
             <div className="container">
-                <h3>Data Analisis</h3>
+                <h3>Analisis Data</h3>
                 <div className="cards">
-                    <Card title="Temperature Statistics" stats={temperatureStats} />
-                    <Card title="Humidity Statistics" stats={humidityStats} />
-                    <Card title="Lembab Statistics" stats={lembabStats} />
+                    <Card title="Statistik Suhu" stats={temperatureStats} />
+                    <Card title="Statistik Kelembapan Udara" stats={humidityStats} />
+                    <Card title="Statistik Kelembapan Tanah" stats={lembabStats} />
                 </div>
             </div>
         </div>

@@ -44,7 +44,6 @@ const Tables: React.FC = () => {
                 </nav>
             </header>
             <div className="container">
-                <h3>Data dari API</h3>
                 <DataTable data={data} />
             </div>
         </div>

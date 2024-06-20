@@ -105,9 +105,9 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th onClick={() => requestSort('temperature')}>Temperature {getSortArrow('temperature')}</th>
-                        <th onClick={() => requestSort('humidity')}>Humidity {getSortArrow('humidity')}</th>
-                        <th onClick={() => requestSort('lembab')}>Lembab {getSortArrow('lembab')}</th>
+                        <th onClick={() => requestSort('temperature')}>Suhu {getSortArrow('temperature')}</th>
+                        <th onClick={() => requestSort('humidity')}>Kelembapan Udara {getSortArrow('humidity')}</th>
+                        <th onClick={() => requestSort('lembab')}>Kelembapan Tanah {getSortArrow('lembab')}</th>
                         <th onClick={() => requestSort('waktu')}>Waktu {getSortArrow('waktu')}</th>
                         <th onClick={() => requestSort('tanggal')}>Tanggal {getSortArrow('tanggal')}</th>
                     </tr>
