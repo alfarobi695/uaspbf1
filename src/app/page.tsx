@@ -22,7 +22,7 @@ const Login = () => {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: formData.toString(),
-      });
+      }); 
 
       const data = await response.json();
 
