@@ -29,7 +29,11 @@ ChartJS.register(
 );
 
 const LineChart: React.FC<LineChartProps> = ({ data, options }) => {
-  return <Line data={data} options={options} />;
+  return (
+    <div className="w-full h-auto">
+      <Line data={data} options={options} />
+    </div>
+  );
 };
  
 export default LineChart;

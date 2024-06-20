@@ -2,8 +2,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import '../dashboard.css';
 import { useRouter } from 'next/navigation';
+import 'tailwindcss/tailwind.css';
 
 interface Data {
     id: number;
@@ -64,11 +64,11 @@ const calculateStats = (data: number[]) => {
 };
 
 const Card: React.FC<{ title: string, stats: { [key: string]: number | number[] | string } }> = ({ title, stats }) => (
-    <div className="card">
-        <h4>{title}</h4>
+    <div className="bg-white shadow-md rounded-lg p-6 mb-4">
+        <h4 className="text-xl font-semibold mb-4 text-center">{title}</h4>
         <ul>
             {Object.entries(stats).map(([key, value]) => (
-                <li key={key}>{key}: {Array.isArray(value) ? value.join(', ') : value}</li>
+                <li key={key} className="mb-2 text-center">{key}: {Array.isArray(value) ? value.join(', ') : value}</li>
             ))}
         </ul>
     </div>
@@ -99,18 +99,18 @@ const Home: React.FC = () => {
     }, []);
 
     return (
-        <div className="dashboard">
-            <header className="header">
-                <nav>
-                    <a href="/dashboards" onClick={(e) => { e.preventDefault(); router.push('/dashboards'); }}>Dashboard</a>
-                    <a href="/tables" onClick={(e) => { e.preventDefault(); router.push('/tables'); }}>Tampil Data</a>
-                    <a href="/charts" onClick={(e) => { e.preventDefault(); router.push('/charts'); }}>Tampil Chart</a>
-                    <a href="/logout" onClick={(e) => { e.preventDefault(); router.push('/'); }}>Logout</a>
+        <div className="min-h-screen bg-gray-100">
+            <header className="bg-blue-600 text-white p-4 shadow-md text-center">
+                <nav className="flex justify-around">
+                    <a href="/dashboards" onClick={(e) => { e.preventDefault(); router.push('/dashboards'); }} className="hover:underline">Dashboard</a>
+                    <a href="/tables" onClick={(e) => { e.preventDefault(); router.push('/tables'); }} className="hover:underline">Tampil Data</a>
+                    <a href="/charts" onClick={(e) => { e.preventDefault(); router.push('/charts'); }} className="hover:underline">Tampil Chart</a>
+                    <a href="/logout" onClick={(e) => { e.preventDefault(); router.push('/'); }} className="hover:underline">Logout</a>
                 </nav>
             </header>
-            <div className="container">
-                <h3>Analisis Data</h3>
-                <div className="cards">
+            <div className="container mx-auto p-4">
+                <h3 className="text-2xl font-bold mb-6 text-center">Analisis Data</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <Card title="Statistik Suhu" stats={temperatureStats} />
                     <Card title="Statistik Kelembapan Udara" stats={humidityStats} />
                     <Card title="Statistik Kelembapan Tanah" stats={lembabStats} />
@@ -118,6 +118,7 @@ const Home: React.FC = () => {
             </div>
         </div>
     );
+    
 };
 
 export default Home;

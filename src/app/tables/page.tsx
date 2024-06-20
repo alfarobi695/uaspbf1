@@ -2,9 +2,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import '../dashboard.css';
 import DataTable from '../components/DataTable';
 import { useRouter } from 'next/navigation';
+import 'tailwindcss/tailwind.css';
 
 interface Data {
     id: number;
@@ -34,17 +34,20 @@ const Tables: React.FC = () => {
     }, []);
 
     return (
-        <div className="dashboard">
-            <header className="header">
-                <nav>
-                    <a href="/dashboards" onClick={(e) => { e.preventDefault(); router.push('/dashboards'); }}>Dashboard</a>
-                    <a href="/tables" onClick={(e) => { e.preventDefault(); router.push('/tables'); }}>Tampil Data</a>
-                    <a href="/charts" onClick={(e) => { e.preventDefault(); router.push('/charts'); }}>Tampil Chart</a>
-                    <a href="/logout" onClick={(e) => { e.preventDefault(); router.push('/'); }}>Logout</a>
+        <div className="min-h-screen bg-gray-100">
+            <header className="bg-blue-600 text-white p-4 shadow-md">
+                <nav className="flex justify-around">
+                    <a href="/dashboards" onClick={(e) => { e.preventDefault(); router.push('/dashboards'); }} className="hover:underline">Dashboard</a>
+                    <a href="/tables" onClick={(e) => { e.preventDefault(); router.push('/tables'); }} className="hover:underline">Tampil Data</a>
+                    <a href="/charts" onClick={(e) => { e.preventDefault(); router.push('/charts'); }} className="hover:underline">Tampil Chart</a>
+                    <a href="/logout" onClick={(e) => { e.preventDefault(); router.push('/'); }} className="hover:underline">Logout</a>
                 </nav>
             </header>
-            <div className="container">
-                <DataTable data={data} />
+            <div className="container mx-auto p-4">
+                <h3 className="text-2xl font-bold mb-6 text-center">Tabel Data</h3>
+                <div className="bg-white shadow-md rounded-lg p-6">
+                    <DataTable data={data} />
+                </div>
             </div>
         </div>
     );

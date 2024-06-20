@@ -1,8 +1,10 @@
-"use client"
+// app/charts/page.tsx
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import LineChart from '../components/LineChart';
 import { ChartData } from 'chart.js';
-import '../dashboard.css';
+import 'tailwindcss/tailwind.css';
 import { useRouter } from 'next/navigation';
 
 interface Data {
@@ -95,26 +97,26 @@ const Charts: React.FC = () => {
   };
 
   return (
-    <div className="dashboard">
-      <div className="header">
-        <nav>
-          <a href="/dashboards" onClick={(e) => { e.preventDefault(); router.push('/dashboards'); }}>Dashboard</a>
-          <a href="/tables" onClick={(e) => { e.preventDefault(); router.push('/tables'); }}>Tampil Data</a>
-          <a href="/charts" onClick={(e) => { e.preventDefault(); router.push('/charts'); }}>Tampil Chart</a>
-          <a href="/logout" onClick={(e) => { e.preventDefault(); router.push('/'); }}>Logout</a>
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-blue-600 text-white p-4 shadow-md">
+        <nav className="flex justify-around">
+          <a href="/dashboards" onClick={(e) => { e.preventDefault(); router.push('/dashboards'); }} className="hover:underline">Dashboard</a>
+          <a href="/tables" onClick={(e) => { e.preventDefault(); router.push('/tables'); }} className="hover:underline">Tampil Data</a>
+          <a href="/charts" onClick={(e) => { e.preventDefault(); router.push('/charts'); }} className="hover:underline">Tampil Chart</a>
+          <a href="/logout" onClick={(e) => { e.preventDefault(); router.push('/'); }} className="hover:underline">Logout</a>
         </nav>
-      </div>
-      <div className="container">
-        <div className="interval-dropdown" style={{ padding: '20px' }}>
-          <label htmlFor="interval">Pilih Interval:</label>
-          <select id="interval" value={intervalType} onChange={handleIntervalChange}>
+      </header>
+      <div className="container mx-auto p-4 text-center">
+        <div className="mb-4">
+          <label htmlFor="interval" className="block text-sm font-medium text-gray-700">Pilih Interval:</label>
+          <select id="interval" value={intervalType} onChange={handleIntervalChange} className="ml-2 block w-full  p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
             <option value="minute">Per Menit</option>
             <option value="hour">Per Jam</option>
           </select>
         </div>
-        <div className="data-selector" style={{ padding: '20px' }}>
-          <label htmlFor="dataSelector">Pilih Data:</label>
-          <select id="dataSelector" value={selectedData} onChange={handleDataChange}>
+        <div className="mb-4">
+          <label htmlFor="dataSelector" className="block text-sm font-medium text-gray-700">Pilih Data:</label>
+          <select id="dataSelector" value={selectedData} onChange={handleDataChange} className="ml-2 block w-full  p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
             <option value="temperature">Suhu</option>
             <option value="humidity">Kelembapan Udara</option>
             <option value="lembab">Kelembapan Tanah</option>
@@ -123,22 +125,22 @@ const Charts: React.FC = () => {
         </div>
         {showAllData ? (
           <>
-            <div id="temperature" className="line-chart">
-              <h3>Grafik Data Suhu</h3>
+            <div id="temperature" className="mb-4">
+              <h3 className="text-xl font-bold mb-2">Grafik Data Suhu</h3>
               <LineChart data={transformGroupedData(groupDataBy(intervalType), 'temperature')} />
             </div>
-            <div id="humidity" className="line-chart">
-              <h3>Grafik Data Kelembapan Udara</h3>
+            <div id="humidity" className="mb-4">
+              <h3 className="text-xl font-bold mb-2">Grafik Data Kelembapan Udara</h3>
               <LineChart data={transformGroupedData(groupDataBy(intervalType), 'humidity')} />
             </div>
-            <div id="lembab" className="line-chart">
-              <h3>Grafik Data Kelembapan Tanah</h3>
+            <div id="lembab" className="mb-4">
+              <h3 className="text-xl font-bold mb-2">Grafik Data Kelembapan Tanah</h3>
               <LineChart data={transformGroupedData(groupDataBy(intervalType), 'lembab')} />
             </div>
           </>
         ) : (
-          <div id="chart" className="line-chart">
-            <h3>Grafik Data {selectedData === 'temperature' ? 'Suhu' : selectedData === 'humidity' ? 'Kelembapan Udara' : 'Kelembapan Tanah'}</h3>
+          <div id="chart" className="mb-4">
+            <h3 className="text-xl font-bold mb-2">Grafik Data {selectedData === 'temperature' ? 'Suhu' : selectedData === 'humidity' ? 'Kelembapan Udara' : 'Kelembapan Tanah'}</h3>
             <LineChart data={transformGroupedData(groupDataBy(intervalType), selectedData)} />
           </div>
         )}

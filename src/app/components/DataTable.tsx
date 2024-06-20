@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import 'tailwindcss/tailwind.css';
 
 interface Data {
     id: number;
@@ -81,18 +82,22 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
     };
 
     return (
-        <div>
+        <div className="container mx-auto p-4">
             <input
                 type="text"
                 placeholder="Search..."
                 value={searchTerm}
                 onChange={handleSearch}
-                style={{ marginBottom: '10px', padding: '5px' }}
+                className="block w-full p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
-            <div style={{ marginBottom: '10px' }}>
+            <div className="mb-4 flex items-center justify-between">
                 <label>
                     Items per page:
-                    <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
+                    <select
+                        value={itemsPerPage}
+                        onChange={handleItemsPerPageChange}
+                        className="ml-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    >
                         <option value={10}>10</option>
                         <option value={20}>20</option>
                         <option value={50}>50</option>
@@ -101,35 +106,48 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
                     </select>
                 </label>
             </div>
-            <table style={{ width: '100%' }}>
-                <thead>
+            <table className="w-full border-collapse border border-gray-300">
+                <thead className="bg-gray-200">
                     <tr>
-                        <th>ID</th>
-                        <th onClick={() => requestSort('temperature')}>Suhu {getSortArrow('temperature')}</th>
-                        <th onClick={() => requestSort('humidity')}>Kelembapan Udara {getSortArrow('humidity')}</th>
-                        <th onClick={() => requestSort('lembab')}>Kelembapan Tanah {getSortArrow('lembab')}</th>
-                        <th onClick={() => requestSort('waktu')}>Waktu {getSortArrow('waktu')}</th>
-                        <th onClick={() => requestSort('tanggal')}>Tanggal {getSortArrow('tanggal')}</th>
+                        <th className="p-2 border border-gray-300 cursor-pointer" onClick={() => requestSort('id')}>
+                            ID {getSortArrow('id')}
+                        </th>
+                        <th className="p-2 border border-gray-300 cursor-pointer" onClick={() => requestSort('temperature')}>
+                            Suhu {getSortArrow('temperature')}
+                        </th>
+                        <th className="p-2 border border-gray-300 cursor-pointer" onClick={() => requestSort('humidity')}>
+                            Kelembapan Udara {getSortArrow('humidity')}
+                        </th>
+                        <th className="p-2 border border-gray-300 cursor-pointer" onClick={() => requestSort('lembab')}>
+                            Kelembapan Tanah {getSortArrow('lembab')}
+                        </th>
+                        <th className="p-2 border border-gray-300 cursor-pointer" onClick={() => requestSort('waktu')}>
+                            Waktu {getSortArrow('waktu')}
+                        </th>
+                        <th className="p-2 border border-gray-300 cursor-pointer" onClick={() => requestSort('tanggal')}>
+                            Tanggal {getSortArrow('tanggal')}
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     {currentItems.map((item, index) => (
-                        <tr key={item.id}>
-                            <td data-label="ID">{index + 1 + indexOfFirstItem}</td>
-                            <td data-label="Temperature">{item.temperature}</td>
-                            <td data-label="Humidity">{item.humidity}</td>
-                            <td data-label="Lembab">{item.lembab}</td>
-                            <td data-label="Waktu">{item.waktu}</td>
-                            <td data-label="Tanggal">{item.tanggal}</td>
+                        <tr key={item.id} className="hover:bg-gray-100">
+                            <td className="p-2 border border-gray-300 text-center">{index + 1 + indexOfFirstItem}</td>
+                            <td className="p-2 border border-gray-300 text-center">{item.temperature}</td>
+                            <td className="p-2 border border-gray-300 text-center">{item.humidity}</td>
+                            <td className="p-2 border border-gray-300 text-center">{item.lembab}</td>
+                            <td className="p-2 border border-gray-300 text-center">{item.waktu}</td>
+                            <td className="p-2 border border-gray-300 text-center">{item.tanggal}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             {itemsPerPage !== -1 && (
-                <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className="mt-4 flex items-center justify-between">
                     <button
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}
+                        className="p-2 border border-gray-300 rounded-md cursor-pointer"
                     >
                         Previous
                     </button>
@@ -139,6 +157,7 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
                     <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages}
+                        className="p-2 border border-gray-300 rounded-md cursor-pointer"
                     >
                         Next
                     </button>
